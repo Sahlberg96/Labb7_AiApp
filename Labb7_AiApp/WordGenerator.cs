@@ -6,9 +6,12 @@ namespace Labb7_AiApp
 {
     internal class WordGenerator
     {
-        public string RandomWord { get; set; }
+        public List<string> WordList = new List<string>()
+        {
+                "Djur","Traktor","vattenfall","tiger","flygplan"
+        };
 
-        public char Letter { get; set; }
+        public char[] Letter { get; set; }
 
         
     }
