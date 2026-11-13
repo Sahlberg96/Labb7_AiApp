@@ -4,17 +4,15 @@
     {
         static void Main(string[] args)
         {
-            WordToGuess();
+            WordToGuess(); 
         }
-        public static void WordToGuess()
+        public static void WordToGuess() // Method to take in the info and methods from WordGenerator and then instantiate it in Main
         {
             bool stillGuessing = true;
+            int wrongGuess = 0;
+            int attemptsLeft = 5;
             WordGenerator wordGenerator = new WordGenerator();
 
-
-            //Random randomWord = new Random();
-
-            //int index = randomWord.Next(wordGenerator.WordList.Count);
 
             string secretWord = wordGenerator.GetRandomWord();
 
@@ -22,21 +20,10 @@
 
             Console.WriteLine(scrambledWord);
 
-            //wordGenerator.Letter = secretWord.ToCharArray();
-
-            //char temp = wordGenerator.Letter[0];
-            //wordGenerator.Letter[0] = wordGenerator.Letter[1];
-            //wordGenerator.Letter[1] = temp;
-
-            //Random mixLetters = new Random();
-            //for (int i = 0; i < wordGenerator.Letter.Length; i++)
-            //{
-            //    mixLetters.Next(wordGenerator.Letter[i]);
-            //    Console.Write(wordGenerator.Letter[i] + " ");
-                
-            //}
-            Console.WriteLine("\nvad tror du det rätta ordet är?");
-            while (stillGuessing)
+            
+            Console.WriteLine("\nWhat do you think the correct word is?");
+            Console.WriteLine("You get 5 attemps");
+            while (stillGuessing && wrongGuess < 5)  // Runs util you guess the correct word or you guess wrong in 5 attempts
             {
                 int numberOfGuesses = 0;
                 string wordGuessed = Console.ReadLine();
@@ -57,14 +44,17 @@
 
                 if (wordGuessed == secretWord)
                 {
-                    Console.WriteLine(" Bra jobbat!");
-                    Console.WriteLine("Ordet var: " + secretWord);
+                    Console.WriteLine("\nWell done!");
+                    Console.WriteLine("The word was: " + secretWord);
                     stillGuessing = false;
                 }
                 else
                 {
-                    Console.WriteLine("\ntyvärr det stämde inte försök igen");
+                    wrongGuess++;
+                    attemptsLeft--;
+                    Console.WriteLine($"\n you have {attemptsLeft} attemps left");
                 }
+                
             }
 
             
